@@ -16,15 +16,9 @@ const validationSchema = Yup.object({
 const LoginForm = () => {
   const dispatch = useDispatch();
 
-  const initialValues = {
-    email: "",
-    password: "",
-  };
-
-  const handleSubmit = (values, { resetForm }) => {
-    const { accept, ...formData } = values;
-    dispatch(logIn(formData));
-    logIn();
+  const handleSubmit = async (values) => {
+    console.log(values);
+    dispatch(logIn(values));
   };
 
   return (
@@ -34,7 +28,10 @@ const LoginForm = () => {
           Вхід
         </Typography>
         <Formik
-          initialValues={initialValues}
+          initialValues={{
+            email: "",
+            password: "",
+          }}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >

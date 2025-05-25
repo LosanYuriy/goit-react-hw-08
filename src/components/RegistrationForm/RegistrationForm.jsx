@@ -26,17 +26,9 @@ const validationSchema = Yup.object({
 const RegistrationForm = () => {
   const dispatch = useDispatch();
 
-  const initialValues = {
-    name: "",
-    email: "",
-    password: "",
-    accept: false,
-  };
-
-  const handleSubmit = (values, { resetForm }) => {
-    const { accept, ...formData } = values;
-    dispatch(register(formData));
-    resetForm();
+  const handleSubmit = async (values) => {
+    console.log(values);
+    dispatch(register(values));
   };
 
   return (
@@ -46,7 +38,12 @@ const RegistrationForm = () => {
           Реєстрація
         </Typography>
         <Formik
-          initialValues={initialValues}
+          initialValues={{
+            name: "",
+            email: "",
+            password: "",
+            confirmPassword: "",
+          }}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
